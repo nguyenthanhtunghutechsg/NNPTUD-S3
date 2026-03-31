@@ -38,7 +38,6 @@ router.get('/:userId', CheckLogin, async function (req, res, next) {
         res.status(404).send("user den khong ton tai")
         return;
     }
-    console.log(user1 + " - " + user2);
     let message = await messageSchema.find({
         $or: [{
             from: user1,
@@ -49,7 +48,7 @@ router.get('/:userId', CheckLogin, async function (req, res, next) {
         }]
     }).sort({
         createdAt: -1
-    })
+    }).populate('from to')
     res.send(message)
 })
 

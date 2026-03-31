@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('nnptud-s3:server');
 var http = require('http');
+let {serverSocket} = require('../utils/chatHandler')
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+serverSocket(server)
 
 /**
  * Listen on provided port, on all network interfaces.
